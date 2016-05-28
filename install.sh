@@ -1,6 +1,12 @@
 #Make sure HOME is set
 : "${HOME:?Need to set HOME}"
 
+# Create the directory structure if necessary
+for DIRECTORY in $( \
+  find . -type d -not -path "./.git*" ); do
+  mkdir -p "$HOME/$DIRECTORY"
+done
+
 # Go through all of the files that need to be used, making
 # symlinks here and overwriting previous symlinks but not files
 for FILE in $( \
