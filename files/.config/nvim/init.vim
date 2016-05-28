@@ -48,6 +48,15 @@ set showmode
 set ruler
 set formatoptions+=o
 
+set title
+
+" Don't try to open certain files with CtrlP
+set wildignore=*.swp,*.bak,*.pyc
+
+" Fix movement with overflowing lines
+nnoremap j gj
+nnoremap k gk
+
 " Whitespace setting
 set textwidth=0
 set expandtab
@@ -62,8 +71,15 @@ set nojoinspaces
 
 set splitbelow
 
+" Search settings
 set hlsearch
+set incsearch
 set magic
+
+set hidden
+
+" Type :w!! to write using sudo
+cmap w!! w !sudo tee % >/dev/null
 
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -165,3 +181,9 @@ if has("nvim")
   autocmd BufWinEnter,WinEnter term://* startinsert
   autocmd BufLeave term://* stopinsert
 end
+
+" Reload vimrc
+nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
+nnoremap <silent> <leader>vr :so $MYVIMRC<CR>
+
+set pastetoggle=<F2>
