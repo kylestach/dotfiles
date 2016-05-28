@@ -118,13 +118,6 @@ nnoremap ; :
 " Code formatting
 map <leader>f :ClangFormat<CR>
 
-" Split terminal with <leader>t
-nnoremap <leader>t :vsp<CR>:terminal<CR>
-tnoremap <ESC> <C-\><C-n>
-tnoremap <C-w> <C-\><C-n><C-w>
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
-
 " Next occurence should center the text
 nmap n nzz
 nmap N Nzz
@@ -135,8 +128,7 @@ nmap <leader>u :MundoToggle<CR>
 
 map <leader>nt :NERDTreeToggle<CR>
 
-" C/C++ specific mappings
-
+" C/C++ settings
 augroup cpp_macros " {
   autocmd!
   " Open corresponding header/source file
@@ -163,3 +155,13 @@ augroup text_macros
   autocmd FileType tex,text :set tw=120
   autocmd FileType text :set noautoindent
 augroup end
+
+" NeoVim only settings
+if has("nvim")
+  " Split terminal with <leader>t
+  nnoremap <leader>t :vsp<CR>:terminal<CR>
+  tnoremap <ESC> <C-\><C-n>
+  tnoremap <C-w> <C-\><C-n><C-w>
+  autocmd BufWinEnter,WinEnter term://* startinsert
+  autocmd BufLeave term://* stopinsert
+end
