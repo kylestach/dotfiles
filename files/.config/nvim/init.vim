@@ -5,7 +5,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'VundleVim/Vundle.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer' }
 Plug 'keith/swift.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -23,6 +22,18 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mtth/scratch.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'uarun/vim-protobuf'
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !python2 ./install.py --clang-completer
+  endif
+endfunction
+
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 call plug#end()
 filetype plugin indent on
@@ -92,7 +103,8 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:clang_format#detect_styleYfile=1
-" let g:clang_format#auto_format=1
+let g:clang_format#auto_format=1
+let g:clang_format#command="clang-format"
 
 
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
@@ -116,6 +128,7 @@ let mapleader = "\<SPACE>"
 
 " Airline settings
 let g:airline#extensions#tabline#enabled = 2
+let g:airline_powerline_fonts = 1
 
 " CtrlP
 nnoremap <leader>o :CtrlP<CR>
