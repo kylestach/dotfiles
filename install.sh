@@ -7,7 +7,6 @@ SEARCH_PREFIX="./files"
 # Create the directory structure if necessary
 for DIRECTORY in $(find "$SEARCH_PREFIX" -type d); do
   DESTINATION="$HOME${DIRECTORY#"$SEARCH_PREFIX"}"
-  echo $DESTINATION
   mkdir -p "$DESTINATION"
 done
 
