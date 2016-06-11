@@ -2,6 +2,10 @@
 #Make sure HOME is set
 : "${HOME:?Need to set HOME}"
 
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
 SEARCH_PREFIX="./files"
 
 # Create the directory structure if necessary
@@ -15,19 +19,19 @@ done
 for FILE in $(find "$SEARCH_PREFIX" -type f); do
   DESTINATION="$HOME/${FILE#"$SEARCH_PREFIX/"}"
   if [ -h "$DESTINATION" ]; then
-    echo "Symlink exists at $DESTINATION, overwriting"
+    echo "${green}Symlink exists at $DESTINATION, overwriting${reset}"
     rm "$DESTINATION"
     ln -s "$(pwd)/$FILE" "$DESTINATION"
   elif [ -f "$DESTINATION" ]; then
-    echo "$DESTINATION already exists"
+    >&2 echo "${red}$DESTINATION already exists${reset}"
   else
-    echo "Making file $DESTINATION"
+    echo "${green}Making file $DESTINATION${reset}"
     ln -s "$(pwd)/$FILE" "$DESTINATION"
   fi
 done
 
 if [ -h "$HOME/.vimrc" ]; then
-  echo "Symlink exists at $HOME/.vimrc, overwriting"
+  echo "${green}Symlink exists at $HOME/.vimrc, overwriting${reset}"
   rm "$HOME/.vimrc"
   ln -s "$HOME/.config/nvim/init.vim" "$HOME/.vimrc"
 elif [ ! -f $HOME/.vimrc ]; then
