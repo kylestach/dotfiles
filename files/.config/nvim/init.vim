@@ -181,7 +181,7 @@ augroup end
 
 augroup text_macros
   autocmd!
-  autocmd FileType tex,text :set tw=120
+  autocmd FileType tex,text,markdown :set tw=120
   autocmd FileType text :set noautoindent
 augroup end
 
