@@ -94,3 +94,7 @@ alias vim='nvim'
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+weather() {
+  sh -c "curl http://wttr.in/$1"
+}
