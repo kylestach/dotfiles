@@ -41,7 +41,7 @@ fi
 vim +PlugInstall +PlugUpdate +qall
 
 # Populate github_installs with ["user/repo"]="./installation_command"
-declare -A github_installs=(["powerline/fonts"]="./install.sh")
+declare -A github_installs=(["powerline/fonts"]="./install.sh", ["gabrielelana/awesome-terminal-fonts -b patching-strategy"]="./sourcecodepro.sh")
 for repo in ${!github_installs[@]}; do
   (rm -rf /tmp/$repo && mkdir -p /tmp/$repo && git clone https://github.com/$repo /tmp/$repo --depth 1 && cd /tmp/$repo && ${github_installs["$repo"]})
 done

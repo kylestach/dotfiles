@@ -1,11 +1,66 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/kyle/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+
+export TERM="xterm-256color"
+DEFAULT_USER="kyle"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time battery)
+
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%} "
+
+# Most of this is stolen from https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#rjorgensons-configuration
+POWERLEVEL9K_STATUS_OK_BACKGROUND="black"
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND="black"
+POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
+POWERLEVEL9K_OS_ICON_BACKGROUND="black"
+POWERLEVEL9K_OS_ICON_FOREGROUND="249"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="black"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="249"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="black"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="249"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="black"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="249"
+POWERLEVEL9K_BATTERY_LOW_BACKGROUND="black"
+POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND="black"
+POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND="black"
+POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="black"
+POWERLEVEL9K_BATTERY_LOW_FOREGROUND="249"
+POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND="249"
+POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND="249"
+POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND="249"
+POWERLEVEL9K_BATTERY_LOW_VISUAL_IDENTIFIER_COLOR="red"
+POWERLEVEL9K_BATTERY_CHARGING_VISUAL_IDENTIFIER_COLOR="yellow"
+POWERLEVEL9K_BATTERY_CHARGED_VISUAL_IDENTIFIER_COLOR="green"
+POWERLEVEL9K_BATTERY_DISCONNECTED_VISUAL_IDENTIFIER_COLOR="249"
+POWERLEVEL9K_TIME_BACKGROUND="black"
+POWERLEVEL9K_TIME_FOREGROUND="249"
+
+POWERLEVEL9K_VCS_BACKGROUND='black'
+POWERLEVEL9K_VCS_FOREGROUND='white'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
+
+POWERLEVEL9K_VCS_GIT_ICON=''
+
+POWERLEVEL9K_MODE='awesome-patched'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +108,7 @@ plugins=(git bazel)
 
 # User configuration
 
-export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/kyle/bin"
+export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/bin:$HOME/swift/usr/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -98,3 +153,6 @@ export EDITOR="$VISUAL"
 weather() {
   sh -c "curl http://wttr.in/$1"
 }
+
+. /home/kyle/build/torch/install/bin/torch-activate
+. /home/kyle/.zshenv
