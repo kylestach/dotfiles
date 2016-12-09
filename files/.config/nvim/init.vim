@@ -39,7 +39,7 @@ function! BuildYCM(info)
     !python2 ./install.py --clang-completer
   endif
 endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': [] }
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " , 'on': [] }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'rhysd/vim-clang-format' | Plug 'kana/vim-operator-user'
 
@@ -199,7 +199,7 @@ augroup cpp_macros " {
   autocmd FileType cpp nnoremap <leader>inc :YcmCompleter GoToInclude<CR>
 
   " Load YCM for cpp files
-  autocmd FileType cpp call plug#load('YouCompleteMe')
+  " autocmd FileType cpp call plug#load('YouCompleteMe')
 augroup end " }
 
 " LaTeX settings
