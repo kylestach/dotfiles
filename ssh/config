@@ -1,0 +1,94 @@
+Include ~/.ssh/generated/config_tpus
+
+SendEnv TMUX_SESSION
+
+Host github
+    HostName github.com
+    User kylestach
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host deepracer-rail
+    HostName 192.168.0.141
+    User deepracer
+
+Host racecar
+    HostName 192.168.1.104
+    User racecar
+    Port 1024
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host kstachowicz-desktop
+    HostName 10.96.69.4
+    User kyle
+
+Host newton1
+    HostName newton1.bair.berkeley.edu
+    User kstachowicz
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host newton2
+    HostName newton2.bair.berkeley.edu
+    User kstachowicz
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host newton3
+    HostName newton3.bair.berkeley.edu
+    User kstachowicz
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host thestral
+    HostName thestral.bair.berkeley.edu
+    User racecar
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host orwell
+    HostName 128.32.175.22
+    User kstachowicz
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    Port 1026
+
+Host lev
+    User kstachowicz
+    HostName 128.32.175.17
+    IdentityFile ~/.ssh/id_rail
+    Port 1026
+
+Host bradbury
+    HostName 10.82.76.8
+    User kyle
+
+Host robovpn
+    HostName 45.33.53.189
+    User root
+    IdentityFile /Users/kstachowicz/.ssh/id_rail
+
+Host kun1
+    User root
+    HostName kun1.ist.berkeley.edu
+    Port 37622
+    LocalForward 9999 kun1.ist.berkeley.edu:35984
+    IdentityFile ~/.ssh/id_rail
+
+Host kun2
+    User root
+    HostName kun2.ist.berkeley.edu
+    Port 37622
+    LocalForward 9999 kun2.ist.berkeley.edu:35984
+    IdentityFile ~/.ssh/id_rail
+
+Host markov
+    User kstachowicz
+    HostName 169.229.219.217
+    Port 22
+    IdentityFile ~/.ssh/id_rail
+    ServerAliveInterval 60
+
+Host dgx6
+    User kstachowicz
+    HostName dgx6.ist.berkeley.edu
+    IdentityFile ~/.ssh/id_rail
+
+Host oppenheimer
+    User kstachowicz
+    HostName oppenheimer.bair.berkeley.edu
+    IdentityFile ~/.ssh/id_rail
