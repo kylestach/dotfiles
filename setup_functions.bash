@@ -155,3 +155,10 @@ install_zsh_plugins() {
     install_zsh_plugin zsh-autosuggestions 'https://github.com/zsh-users/zsh-autosuggestions'
     install_zsh_plugin conda-zsh-completion 'https://github.com/conda-incubator/conda-zsh-completion'
 }
+
+install_fonts() {
+    mkdir -p $HOME/.local/share/fonts
+    wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.tar.xz" -o /tmp/NerdFontsSymbolsOnly.tar.xz
+    tar -C $HOME/.local/share/fonts -xf /tmp/NerdFontsSymbolsOnly.tar.xz
+    sudo fc-cache -fr
+}

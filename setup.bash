@@ -17,6 +17,9 @@ checked_install check_mamba install_mamba 24.3.0-0
 checked_install check_neovim install_neovim 0.10.0
 symlink_replace `realpath nvim` $HOME/.config/nvim
 
+# Fallback vimrc
+symlink_replace `realpath vimrc` $HOME/.vimrc
+
 # Terminal (kitty)
 symlink_replace `realpath kitty` $HOME/.config/kitty
 checked_install check_kitty install_kitty
