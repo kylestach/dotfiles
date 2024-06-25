@@ -5,7 +5,7 @@ SendEnv TMUX_SESSION
 Host github
     HostName github.com
     User kylestach
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host deepracer-rail
     HostName 192.168.0.141
@@ -15,7 +15,7 @@ Host racecar
     HostName 192.168.1.104
     User racecar
     Port 1024
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host kstachowicz-desktop
     HostName 10.96.69.4
@@ -24,27 +24,27 @@ Host kstachowicz-desktop
 Host newton1
     HostName newton1.bair.berkeley.edu
     User kstachowicz
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host newton2
     HostName newton2.bair.berkeley.edu
     User kstachowicz
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host newton3
     HostName newton3.bair.berkeley.edu
     User kstachowicz
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host thestral
     HostName thestral.bair.berkeley.edu
     User racecar
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host orwell
     HostName 128.32.175.22
     User kstachowicz
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
     Port 1026
 
 Host lev
@@ -60,7 +60,7 @@ Host bradbury
 Host robovpn
     HostName 45.33.53.189
     User root
-    IdentityFile /Users/kstachowicz/.ssh/id_rail
+    IdentityFile ~/.ssh/id_rail
 
 Host kun1
     User root
