@@ -4,3 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 # autoload -Uz $(basename -a $ZSH/functions/*) ""
 
 export PATH=$PATH:$HOME/.local/bin
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="less"
