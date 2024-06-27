@@ -118,7 +118,7 @@ install_kitty() {
     sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
     # Make xdg-terminal-exec (and hence desktop environments that support it use kitty)
     echo 'kitty.desktop' > ~/.config/xdg-terminals.list
-    gsettings set org.gnome.desktop.default-applications.terminal exec '$HOME/.local/bin/kitty'
+    gsettings set org.gnome.desktop.default-applications.terminal exec "$HOME/.local/bin/kitty"
     kitten themes "Github Dark"
 }
 
@@ -154,6 +154,8 @@ install_zsh_plugins() {
     install_zsh_plugin zsh-syntax-highlighting 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
     install_zsh_plugin zsh-autosuggestions 'https://github.com/zsh-users/zsh-autosuggestions'
     install_zsh_plugin conda-zsh-completion 'https://github.com/conda-incubator/conda-zsh-completion'
+
+    curl -sS https://starship.rs/install.sh | sh
 }
 
 install_fonts() {
@@ -161,4 +163,10 @@ install_fonts() {
     wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.tar.xz" -o /tmp/NerdFontsSymbolsOnly.tar.xz
     tar -C $HOME/.local/share/fonts -xf /tmp/NerdFontsSymbolsOnly.tar.xz
     sudo fc-cache -fr
+}
+
+install_gcloud_cli() {
+    wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz -o /tmp/google-cloud-cli-linux-x86_64.tar.gz
+    tar -xvf /tmp/google-cloud-cli-linux-x86_64.tar.gz -C $HOME
+    $HOME/google-cloud-sdk/install.sh
 }

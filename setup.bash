@@ -4,7 +4,7 @@ source setup_functions.bash
 
 # Basic system utilities
 sudo apt-get update && sudo apt-get -y install \
-    curl wget zip openssh-server tmux zsh luajit luarocks liblua5.1-dev libmagickwand-dev
+    curl wget zip openssh-server tmux zsh luajit luarocks liblua5.1-dev libmagickwand-dev direnv
 
 mkdir -p $HOME/.config
 mkdir -p $HOME/.local
@@ -29,10 +29,11 @@ symlink_replace `realpath tmux.conf` $HOME/.tmux.conf
 
 # SSH setup
 echo "Remember to copy SSH keys to this machine!"
-symlink_replace `realpath ssh` $HOME/.ssh
+symlink_replace `realpath ssh_config` $HOME/.ssh/config
 
 # NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+ln -s `nvm which default` $HOME/.local/bin/node
 
 ## Desktop apps
 install_ubuntu_desktop_apps

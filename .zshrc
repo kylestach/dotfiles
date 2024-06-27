@@ -4,8 +4,6 @@ if [ -e $HOME/.oh-my-zsh ]; then
   export ZSH_DISABLE_COMPFIX=true
   export ZSH=$HOME/.oh-my-zsh
 
-  ZSH_THEME="agnoster"
-
   ENABLE_CORRECTION="true"
 
   plugins=(
@@ -102,10 +100,19 @@ fi
 # When tmux is called with no arguments, run the choose-tree by default
 tmux() {
   if [ "$#" -eq 0 ]; then
-    command tmux attach\; choose-tree
+    (command tmux attach\; choose-tree) || command tmux
   else
     command tmux "$@"
   fi
 }
 
 test -n "$PROF" && zprof || true
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/kstachowicz/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kstachowicz/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/kstachowicz/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kstachowicz/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
