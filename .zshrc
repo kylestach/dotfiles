@@ -17,6 +17,10 @@ if [ -e $HOME/.oh-my-zsh ]; then
   )
   DISABLE_AUTO_UPDATE=true
   source $ZSH/oh-my-zsh.sh
+else
+  autoload -Uz promptinit
+  promptinit
+  prompt walters
 fi
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080"
@@ -39,28 +43,25 @@ if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-clou
 
 export TERM=xterm-256color
 
-CONDA_DIR=$HOME/miniforge3
+# List of directories in which conda might be
+CONDA_DIRS=(
+  /opt/homebrew/Caskroom/mambaforge
+)
+
+for dir in $CONDA_DIRS; do
+  if [ -e $dir ]; then
+    export CONDA_DIR=$dir
+    break
+  fi
+done
+
 if [ -e $CONDA_DIR ]; then
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/kstachowicz/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/kstachowicz/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/kstachowicz/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/kstachowicz/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/home/kstachowicz/miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/home/kstachowicz/miniforge3/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
+  if [ -f "$CONDA_DIR/base/etc/profile.d/conda.sh" ]; then
+    . "$CONDA_DIR/base/etc/profile.d/conda.sh"
+    . "$CONDA_DIR/base/etc/profile.d/mamba.sh"
+  else
+    export PATH="$CONDA_DIR/base/bin:$PATH"
+  fi
 fi
 
 # Lazy NVM initialization
