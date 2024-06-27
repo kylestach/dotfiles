@@ -46,6 +46,7 @@ export TERM=xterm-256color
 # List of directories in which conda might be
 CONDA_DIRS=(
   /opt/homebrew/Caskroom/mambaforge
+  $HOME/miniforge3/etc/profile.d/conda.sh
 )
 
 for dir in $CONDA_DIRS; do

@@ -1,3 +1,22 @@
+is_ubuntu() {
+    [ -f /etc/lsb-release ] && grep -q "DISTRIB_ID=Ubuntu" /etc/lsb-release
+}
+is_macos() {
+    [ "$(uname)" == "Darwin" ]
+}
+macos_only() {
+    if ! is_macos; then
+        echo "The function $1 is only available on macOS."
+        return 1
+    fi
+}
+ubuntu_only() {
+    if ! is_ubuntu; then
+        echo "The function $1 is only available on Ubuntu."
+        return 1
+    fi
+}
+
 symlink_replace() {
     local source="$1"
     local dest="$2"
@@ -73,6 +92,14 @@ install_mamba() {
 }
 
 
+check_brew() {
+    command -v brew &> /dev/null
+}
+install_brew() {
+    macos_only install_brew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
 check_neovim() {
     local NEOVIM_TARGET_VERSION=$1
 
@@ -94,8 +121,13 @@ check_neovim() {
     fi
 }
 install_neovim() {
-    wget https://github.com/neovim/neovim/releases/download/v$TARGET_VERSION/nvim-linux64.tar.gz -o /tmp/nvim-linux64.tar.gz
-    tar -C $HOME/.local/ -xvf /tmp/nvim-linux64.tar.gz
+    if is_ubuntu; then
+        sudo apt-get -y install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+        wget https://github.com/neovim/neovim/releases/download/v$TARGET_VERSION/nvim-linux64.tar.gz -o /tmp/nvim-linux64.tar.gz
+        tar -C $HOME/.local/ -xvf /tmp/nvim-linux64.tar.gz
+    elif is_macos; then
+        brew install neovim
+    fi
 }
 
 check_kitty() {
@@ -124,6 +156,8 @@ install_kitty() {
 
 
 install_ubuntu_desktop_apps() {
+    ubuntu_only install_ubuntu_desktop_apps
+
     # 1Password
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
     echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
@@ -135,6 +169,15 @@ install_ubuntu_desktop_apps() {
 
     # Others
     sudo snap install slack todoist spotify
+}
+
+check_yabai() {
+    command -v yabai &> /dev/null
+}
+install_yabai() {
+    macos_only install_yabai
+    brew install koekeishiya/formulae/yabai
+    brew services start yabai
 }
 
 install_zsh_plugin() {
