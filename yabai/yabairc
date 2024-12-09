@@ -44,12 +44,12 @@ yabai -m config window_topmost              off
 yabai -m config window_opacity              off
 yabai -m config window_shadow               off
 
-yabai -m config window_border               on
-yabai -m config window_border_width         2
-yabai -m config active_window_border_color  "${color_focused}"
-yabai -m config normal_window_border_color  "${color_normal}"
-yabai -m config insert_feedback_color       "${color_preselect}"
-yabai -m config window_border_blur          off
+# yabai -m config window_border               on
+# yabai -m config window_border_width         2
+# yabai -m config active_window_border_color  "${color_focused}"
+# yabai -m config normal_window_border_color  "${color_normal}"
+# yabai -m config insert_feedback_color       "${color_preselect}"
+# yabai -m config window_border_blur          off
 
 yabai -m config active_window_opacity       1.0
 yabai -m config normal_window_opacity       1.0
@@ -131,3 +131,5 @@ yabai -m signal --add event=application_terminated action="yabai -m query --wind
 
 set +x
 printf "yabai: configuration loaded...\\n"
+
+borders active_color="${color_focused}" inactive_color="${color_normal}" width=5.0 style=square &
